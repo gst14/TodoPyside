@@ -14,6 +14,7 @@ class Tarea(QDialog):
         self.ui.setupUi(self)
         self.ui.btnLimpiar.clicked.connect(self.limpiarCampos)
         self.ui.btnGuardar.clicked.connect(self.guardarDatos)
+        self.ui.btnCancelar.clicked.connect(self.cancelar)
         self.ui.chqConFchaFin.stateChanged.connect(self.verificarCheck)
         self.iniciarCombo()
         self.limpiarCampos()
@@ -22,6 +23,9 @@ class Tarea(QDialog):
         self.tarea = dict()
 
 
+    def cancelar(self):
+        self.datos = None
+        self.done(1) # no hay datos cargados
 
     def verificarCheck(self):
         print(f"Estado del checkbox: {self.ui.chqConFchaFin.isChecked()}")
