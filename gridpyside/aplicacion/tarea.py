@@ -47,23 +47,23 @@ class Tarea(QDialog):
         self.ui.comboEstados.addItems('Facil Normal Revisar Urgente Finalizado'.split())
 
 
-    def showDialog(self):
-        msgBox = QMessageBox(QMessageBox.Information,'Atencion', 'Datos guardados',QMessageBox.Ok | QMessageBox.Cancel)
-        # msgBox.setStandardButtons(QMessageBox.Ok | QMessageBox.Cancel)
-        # msgBox.setDefaultButton(QMessageBox.Ok)
-        return msgBox
+    def crearDialogo(self,icono , titulo, texto, botones): return QMessageBox(icono,titulo, texto,botones)
 
     def guardarDatos(self):
         self.recogerData()
-        msg = self.showDialog()
-        response = msg.exec_()
-        # if response == QMessageBox.Ok:
-        print('OK')
-        self.done(0)
-        # else:
-        #     return
-        
+        if self.fechasValidas():
+            msg = self.crearDialogo(QMessageBox.Information, 'Atencion', 'Datos guardados', QMessageBox.Ok)
+            response = msg.exec_()
+            self.done(0)
+        else:
+            msg = self.crearDialogo(QMessageBox.Critical, 'Atencion', 'La fecha de inicio no puede ser mayor a la final', QMessageBox.Ok)
+            msg.exec_()
+    
+    def fechasValidas(self) : return self.ui.tareaDiaOrigen.date() <= self.ui.tareaDiaFin.date()
+
     def recogerData(self):
+        print('Origen es mayor que Fin :',end=' ')
+        print(self.ui.tareaDiaOrigen.date() > self.ui.tareaDiaFin.date())
         self.datos['descripcion'] = self.ui.editDescripcion.text()
         self.datos['estado'] = self.ui.comboEstados.currentText()
         self.datos['fecha_inicio'] = self.ui.tareaDiaOrigen.date().toString('dd/MM/yyyy')
