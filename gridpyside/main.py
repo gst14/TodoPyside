@@ -21,9 +21,12 @@ class Principal(QMainWindow):
     def agregar(self):
         task = Tarea()
         task.exec_()
-        self.tareas.append(task.datos)    
-        print(task.datos)
-        self.formatearTabla(self.tareas)
+        if self.tareas:
+            self.tareas.append(task.datos)    
+            print(task.datos)
+            self.formatearTabla(self.tareas)
+        else:
+            print('Se cancelo el agregar')
 
     def formatearTabla(self,data: list):
         self.ui.tablaDatos.setColumnCount(4)
