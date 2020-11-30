@@ -21,7 +21,7 @@ class Principal(QMainWindow):
     def agregar(self):
         task = Tarea()
         task.exec_()
-        if self.tareas:
+        if task.datos:
             self.tareas.append(task.datos)    
             print(task.datos)
             self.formatearTabla(self.tareas)

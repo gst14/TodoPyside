@@ -2,7 +2,7 @@ import sys
 import json
 # from faker import Faker
 from datetime import datetime
-from PySide2.QtWidgets import QDialog
+from PySide2.QtWidgets import QDialog, QMessageBox
 from vistas.Ui_tarea import Ui_QTarea
 
 
@@ -28,7 +28,6 @@ class Tarea(QDialog):
         self.done(1) # no hay datos cargados
 
     def verificarCheck(self):
-        print(f"Estado del checkbox: {self.ui.chqConFchaFin.isChecked()}")
         if self.ui.chqConFchaFin.isChecked():
             self.ui.tareaDiaFin.setReadOnly(False)
             self.ui.tareaDiaOrigen.setDate(self.auxdatefin)
@@ -45,12 +44,27 @@ class Tarea(QDialog):
         self.ui.tareaDiaFin.setDate(datetime.today())
     
     def iniciarCombo(self):
-        self.ui.comboEstados.addItems('Facil Normal Revisar Urgente'.split())
+        self.ui.comboEstados.addItems('Facil Normal Revisar Urgente Finalizado'.split())
 
+
+    def showDialog(self):
+        msgBox = QMessageBox(QMessageBox.Information,'Atencion', 'Datos guardados',QMessageBox.Ok | QMessageBox.Cancel)
+        # msgBox.setStandardButtons(QMessageBox.Ok | QMessageBox.Cancel)
+        # msgBox.setDefaultButton(QMessageBox.Ok)
+        return msgBox
 
     def guardarDatos(self):
+        self.recogerData()
+        msg = self.showDialog()
+        response = msg.exec_()
+        # if response == QMessageBox.Ok:
+        print('OK')
+        self.done(0)
+        # else:
+        #     return
+        
+    def recogerData(self):
         self.datos['descripcion'] = self.ui.editDescripcion.text()
         self.datos['estado'] = self.ui.comboEstados.currentText()
         self.datos['fecha_inicio'] = self.ui.tareaDiaOrigen.date().toString('dd/MM/yyyy')
         self.datos['fecha_fin'] = self.ui.tareaDiaFin.date().toString('dd/MM/yyyy')
-        self.done(0)

@@ -173,6 +173,9 @@ color: rgb(162, 10, 10);</string>
       <property name="displayFormat">
        <string>d/M/yyyy</string>
       </property>
+      <property name="calendarPopup">
+       <bool>true</bool>
+      </property>
      </widget>
     </item>
    </layout>
