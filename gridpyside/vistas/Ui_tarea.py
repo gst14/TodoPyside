@@ -103,6 +103,7 @@ class Ui_QTarea(object):
         self.tareaDiaOrigen.setStyleSheet(u"background-color: rgb(246, 238, 201);\n"
 "color: rgb(162, 10, 10);")
         self.tareaDiaOrigen.setAlignment(Qt.AlignCenter)
+        self.tareaDiaOrigen.setCalendarPopup(True)
 
         self.verticalLayout.addWidget(self.tareaDiaOrigen)
 
@@ -117,6 +118,7 @@ class Ui_QTarea(object):
         self.tareaDiaFin.setStyleSheet(u"background-color: rgb(246, 238, 201);\n"
 "color: rgb(162, 10, 10);")
         self.tareaDiaFin.setAlignment(Qt.AlignCenter)
+        self.tareaDiaFin.setCalendarPopup(True)
 
         self.verticalLayout.addWidget(self.tareaDiaFin)
 
