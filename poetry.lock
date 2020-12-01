@@ -108,6 +108,25 @@ checkqa-mypy = ["mypy (==v0.761)"]
 testing = ["argcomplete", "hypothesis (>=3.56)", "mock", "nose", "requests", "xmlschema"]
 
 [[package]]
+name = "qtawesome"
+version = "1.0.1"
+description = "FontAwesome icons in PyQt and PySide applications"
+category = "main"
+optional = false
+python-versions = "*"
+
+[package.dependencies]
+qtpy = "*"
+
+[[package]]
+name = "qtpy"
+version = "1.9.0"
+description = "Provides an abstraction layer on top of the various Qt bindings (PyQt5, PyQt4 and PySide) and additional custom QWidgets."
+category = "main"
+optional = false
+python-versions = "*"
+
+[[package]]
 name = "shiboken2"
 version = "5.15.2"
 description = "Python / C++ bindings helper module"
@@ -126,7 +145,7 @@ python-versions = "*"
 [metadata]
 lock-version = "1.1"
 python-versions = ">=3.8,<3.10"
-content-hash = "12e5af7be874ba1bbde53e28d84ba7ef9583409c598a339529326316fb993850"
+content-hash = "eb48552d659eab52b9e45792a7da5415841068fa7a45ea219872a2afb766e5b7"
 
 [metadata.files]
 atomicwrites = [
@@ -172,6 +191,14 @@ pyside2 = [
 pytest = [
     {file = "pytest-5.4.3-py3-none-any.whl", hash = "sha256:5c0db86b698e8f170ba4582a492248919255fcd4c79b1ee64ace34301fb589a1"},
     {file = "pytest-5.4.3.tar.gz", hash = "sha256:7979331bfcba207414f5e1263b5a0f8f521d0f457318836a7355531ed1a4c7d8"},
+]
+qtawesome = [
+    {file = "QtAwesome-1.0.1-py3-none-any.whl", hash = "sha256:2c310df86f5c5758e0945bdf2f06a77368e356166c8264dcd1d30f0cf49ded6d"},
+    {file = "QtAwesome-1.0.1.tar.gz", hash = "sha256:d612a313e531966d17f5a8fb7604faba961cf7ce3c77a9168c6f60e60140b767"},
+]
+qtpy = [
+    {file = "QtPy-1.9.0-py2.py3-none-any.whl", hash = "sha256:fa0b8363b363e89b2a6f49eddc162a04c0699ae95e109a6be3bb145a913190ea"},
+    {file = "QtPy-1.9.0.tar.gz", hash = "sha256:2db72c44b55d0fe1407be8fba35c838ad0d6d3bb81f23007886dc1fc0f459c8d"},
 ]
 shiboken2 = [
     {file = "shiboken2-5.15.2-5.15.2-cp27-cp27m-macosx_10_13_intel.whl", hash = "sha256:03f41b0693b91c7f89627f1085a4ecbe8591c03f904118a034854d935e0e766c"},
