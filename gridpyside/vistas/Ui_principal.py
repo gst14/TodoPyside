@@ -17,7 +17,7 @@ class Ui_QPrincipal(object):
     def setupUi(self, QPrincipal):
         if not QPrincipal.objectName():
             QPrincipal.setObjectName(u"QPrincipal")
-        QPrincipal.resize(474, 299)
+        QPrincipal.resize(548, 309)
         QPrincipal.setLayoutDirection(Qt.LeftToRight)
         QPrincipal.setAutoFillBackground(False)
         QPrincipal.setStyleSheet(u"border-top-color: rgb(162, 10, 10);\n"
@@ -27,23 +27,24 @@ class Ui_QPrincipal(object):
         QPrincipal.setTabShape(QTabWidget.Triangular)
         self.centralwidget = QWidget(QPrincipal)
         self.centralwidget.setObjectName(u"centralwidget")
-        self.pushButton = QPushButton(self.centralwidget)
-        self.pushButton.setObjectName(u"pushButton")
-        self.pushButton.setGeometry(QRect(376, 30, 75, 23))
-        self.pushButton.setStyleSheet(u"background-color: rgb(246, 238, 201);\n"
+        self.editBusqueda = QLineEdit(self.centralwidget)
+        self.editBusqueda.setObjectName(u"editBusqueda")
+        self.editBusqueda.setGeometry(QRect(90, 30, 291, 23))
+        self.editBusqueda.setStyleSheet(u"background-color: rgb(246, 238, 201);\n"
 "color: rgb(162, 10, 10);")
-        self.lineEdit = QLineEdit(self.centralwidget)
-        self.lineEdit.setObjectName(u"lineEdit")
-        self.lineEdit.setGeometry(QRect(90, 30, 281, 20))
-        self.lineEdit.setStyleSheet(u"background-color: rgb(246, 238, 201);\n"
-"color: rgb(162, 10, 10);")
+        self.editBusqueda.setInputMethodHints(Qt.ImhNone)
         self.tablaDatos = QTableWidget(self.centralwidget)
         self.tablaDatos.setObjectName(u"tablaDatos")
-        self.tablaDatos.setGeometry(QRect(20, 61, 441, 211))
+        self.tablaDatos.setGeometry(QRect(20, 61, 501, 241))
         self.tablaDatos.setStyleSheet(u"background-color: rgb(246, 238, 201);\n"
 "color: rgb(0, 0, 0);")
+        self.tablaDatos.setSizeAdjustPolicy(QAbstractScrollArea.AdjustToContents)
+        self.tablaDatos.setEditTriggers(QAbstractItemView.NoEditTriggers)
+        self.tablaDatos.setTabKeyNavigation(False)
+        self.tablaDatos.setProperty("showDropIndicator", False)
+        self.tablaDatos.setDragDropOverwriteMode(False)
         self.tablaDatos.setSelectionMode(QAbstractItemView.ContiguousSelection)
-        self.tablaDatos.setSelectionBehavior(QAbstractItemView.SelectItems)
+        self.tablaDatos.setSelectionBehavior(QAbstractItemView.SelectRows)
         self.tablaDatos.setTextElideMode(Qt.ElideNone)
         self.tablaDatos.setGridStyle(Qt.DashDotDotLine)
         self.tablaDatos.setCornerButtonEnabled(False)
@@ -57,6 +58,32 @@ class Ui_QPrincipal(object):
 "color: rgb(162, 10, 10);\n"
 "selection-color: rgb(162, 10, 10);\n"
 "selection-background-color: rgb(246, 238, 201);")
+        self.widget = QWidget(self.centralwidget)
+        self.widget.setObjectName(u"widget")
+        self.widget.setGeometry(QRect(390, 30, 131, 25))
+        self.horizontalLayout = QHBoxLayout(self.widget)
+        self.horizontalLayout.setObjectName(u"horizontalLayout")
+        self.horizontalLayout.setContentsMargins(0, 0, 0, 0)
+        self.btnModificar = QPushButton(self.widget)
+        self.btnModificar.setObjectName(u"btnModificar")
+        self.btnModificar.setToolTipDuration(3)
+        self.btnModificar.setStyleSheet(u"background-color: rgb(246, 238, 201);\n"
+"color: rgb(162, 10, 10);\n"
+"selection-color: rgb(162, 10, 10);\n"
+"selection-background-color: rgb(246, 238, 201);")
+
+        self.horizontalLayout.addWidget(self.btnModificar)
+
+        self.btnEliminar = QPushButton(self.widget)
+        self.btnEliminar.setObjectName(u"btnEliminar")
+        self.btnEliminar.setToolTipDuration(3)
+        self.btnEliminar.setStyleSheet(u"background-color: rgb(246, 238, 201);\n"
+"color: rgb(162, 10, 10);\n"
+"selection-color: rgb(162, 10, 10);\n"
+"selection-background-color: rgb(246, 238, 201);")
+
+        self.horizontalLayout.addWidget(self.btnEliminar)
+
         QPrincipal.setCentralWidget(self.centralwidget)
         self.statusbar = QStatusBar(QPrincipal)
         self.statusbar.setObjectName(u"statusbar")
@@ -69,13 +96,26 @@ class Ui_QPrincipal(object):
 
     def retranslateUi(self, QPrincipal):
         QPrincipal.setWindowTitle(QCoreApplication.translate("QPrincipal", u"Inicio", None))
-        self.pushButton.setText(QCoreApplication.translate("QPrincipal", u"Buscar", None))
 #if QT_CONFIG(tooltip)
         self.btnAdd.setToolTip(QCoreApplication.translate("QPrincipal", u"Ctrl + A", None))
 #endif // QT_CONFIG(tooltip)
         self.btnAdd.setText(QCoreApplication.translate("QPrincipal", u"Agregar", None))
 #if QT_CONFIG(shortcut)
         self.btnAdd.setShortcut(QCoreApplication.translate("QPrincipal", u"Ctrl+A", None))
+#endif // QT_CONFIG(shortcut)
+#if QT_CONFIG(tooltip)
+        self.btnModificar.setToolTip(QCoreApplication.translate("QPrincipal", u"Ctrl + A", None))
+#endif // QT_CONFIG(tooltip)
+        self.btnModificar.setText(QCoreApplication.translate("QPrincipal", u"Modificar", None))
+#if QT_CONFIG(shortcut)
+        self.btnModificar.setShortcut(QCoreApplication.translate("QPrincipal", u"Ctrl+A", None))
+#endif // QT_CONFIG(shortcut)
+#if QT_CONFIG(tooltip)
+        self.btnEliminar.setToolTip(QCoreApplication.translate("QPrincipal", u"Ctrl + A", None))
+#endif // QT_CONFIG(tooltip)
+        self.btnEliminar.setText(QCoreApplication.translate("QPrincipal", u"Eliminar", None))
+#if QT_CONFIG(shortcut)
+        self.btnEliminar.setShortcut(QCoreApplication.translate("QPrincipal", u"Ctrl+A", None))
 #endif // QT_CONFIG(shortcut)
     # retranslateUi
 
