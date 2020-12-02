@@ -7,17 +7,17 @@ from vistas.Ui_tarea import Ui_QTarea
 
 
 class Tarea(QDialog):
-    def __init__(self):
+    def __init__(self, data = None):
         super(Tarea, self).__init__()
-        self.datos = dict()
+        self.datos = data
         self.ui = Ui_QTarea()
         self.ui.setupUi(self)
-        self.ui.btnLimpiar.clicked.connect(self.limpiarCampos)
+        self.ui.btnLimpiar.clicked.connect(self.iniciarCampos)
         self.ui.btnGuardar.clicked.connect(self.guardarDatos)
         self.ui.btnCancelar.clicked.connect(self.cancelar)
         self.ui.chqConFchaFin.stateChanged.connect(self.verificarCheck)
         self.iniciarCombo()
-        self.limpiarCampos()
+        self.iniciarCampos()
         self.auxdatefin = self.ui.tareaDiaFin.date()
         self.verificarCheck()
         self.tarea = dict()
@@ -36,12 +36,20 @@ class Tarea(QDialog):
 
 
 
-    def limpiarCampos(self):
-        self.ui.editDescripcion.clear()
-        self.ui.comboEstados.setCurrentIndex(0)
-        self.ui.chqConFchaFin.checked = True
-        self.ui.tareaDiaOrigen.setDate(datetime.today())
-        self.ui.tareaDiaFin.setDate(datetime.today())
+    def iniciarCampos(self):
+        if self.datos == None:
+            self.ui.editDescripcion.clear()
+            self.ui.comboEstados.setCurrentIndex(0)
+            self.ui.chqConFchaFin.checked = True
+            self.ui.tareaDiaOrigen.setDate(datetime.today())
+            self.ui.tareaDiaFin.setDate(datetime.today())
+        else:
+            self.ui.editDescripcion.setText(self.datos['descripcion'])
+            estado_id = self.ui.comboEstados.findText(self.datos['estado'])
+            self.ui.comboEstados.setCurrentIndex(estado_id)
+            self.ui.chqConFchaFin.checked = True
+            self.ui.tareaDiaOrigen.setDate(datetime.strptime(self.datos['fecha_inicio'], "%d/%m/%Y").date())
+            self.ui.tareaDiaFin.setDate(datetime.strptime(self.datos['fecha_fin'], "%d/%m/%Y").date())
     
     def iniciarCombo(self):
         self.ui.comboEstados.addItems('Facil Normal Revisar Urgente Finalizado'.split())
@@ -62,8 +70,7 @@ class Tarea(QDialog):
     def fechasValidas(self) : return self.ui.tareaDiaOrigen.date() <= self.ui.tareaDiaFin.date()
 
     def recogerData(self):
-        print('Origen es mayor que Fin :',end=' ')
-        print(self.ui.tareaDiaOrigen.date() > self.ui.tareaDiaFin.date())
+        self.datos = dict()
         self.datos['descripcion'] = self.ui.editDescripcion.text()
         self.datos['estado'] = self.ui.comboEstados.currentText()
         self.datos['fecha_inicio'] = self.ui.tareaDiaOrigen.date().toString('dd/MM/yyyy')
